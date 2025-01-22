@@ -1,0 +1,8 @@
+{
+    "name": "MQ8",
+    "description": "MakeCode extension for MQ-8 Hydrogen Gas Sensor",
+    "files": [
+        "main.ts"
+    ],
+    "dependencies": {}
+}
