@@ -49,7 +49,7 @@ namespace MQ8 {
     export function calculatePPM(Rs: number): number {
         if (Rs <= 0) return 0; // Avoid invalid calculations
         let ratio = Rs / Ro; // Rs/Ro
-        let ppm = Math.pow(10, (-0.6) * Math.log10(ratio)); // Adjusted formula for simplicity
+        let ppm = Math.pow(10, (-0.6) * (Math.log(ratio) / Math.log(10))); // Replace log10 with log(x)/log(10)
         return Math.round(ppm); // Return rounded value for clarity
     }
 
