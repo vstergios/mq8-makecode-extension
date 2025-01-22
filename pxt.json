@@ -1,8 +1,17 @@
 {
     "name": "MQ8",
     "description": "MakeCode extension for MQ-8 Hydrogen Gas Sensor",
+    "version": "0.0.1",
+    "dependencies": {
+        "core": "*"
+    },
     "files": [
         "main.ts"
     ],
-    "dependencies": {}
+    "testFiles": [],
+    "public": true,
+    "supportedTargets": [
+        "microbit",
+        "arcade"
+    ]
 }
