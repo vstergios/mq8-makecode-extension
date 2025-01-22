@@ -33,7 +33,8 @@ namespace MQ8 {
      */
     //% block="get sensor resistance from %pin"
     export function getSensorResistance(pin: AnalogPin): number {
-        let Vout = pins.analogReadPin(pin) * (Vc / 1023); // Convert analog reading to voltage
+        let analogValue = pins.analogReadPin(pin); // Raw analog value
+        let Vout = (analogValue * Vc) / 1023; // Convert analog reading to voltage
         if (Vout <= 0) return 0; // Avoid division by zero
         let Rs = RL * ((Vc - Vout) / Vout);
         return Rs;
@@ -48,8 +49,8 @@ namespace MQ8 {
     export function calculatePPM(Rs: number): number {
         if (Rs <= 0) return 0; // Avoid invalid calculations
         let ratio = Rs / Ro; // Rs/Ro
-        let ppm = Math.pow(10, (Math.log10(ratio) - Math.log10(1)) / (-0.6)); // Example formula
-        return ppm;
+        let ppm = Math.pow(10, (-0.6) * Math.log10(ratio)); // Adjusted formula for simplicity
+        return Math.round(ppm); // Return rounded value for clarity
     }
 
     /**
