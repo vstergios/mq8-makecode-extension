@@ -8,11 +8,11 @@ namespace MQ8Sensor {
     // H2 Curve: {x, y, slope}
     const H2Curve = [2.3, 0.93, -1.44];
 
-    // Sampling settings
+    // Sampling settings (local variables)
     let calibrationSamples = 50;
     let calibrationInterval = 500;
-    let readSamples = 5; // Local variable for read samples
-    let readInterval = 50; // Local variable for read interval
+    let readSamples = 5;  // Local variable for number of samples to read
+    let readInterval = 50; // Local variable for interval between reads
 
     /**
      * Calibrate the MQ-8 sensor in clean air
@@ -57,7 +57,7 @@ namespace MQ8Sensor {
     ): void {
         calibrationSamples = calSamples;
         calibrationInterval = calInterval;
-        readSamples = newReadSamples; // Modify the local variable directly
+        readSamples = newReadSamples;  // Modify the local variable directly
         readInterval = newReadInterval; // Modify the local variable directly
     }
 
@@ -68,9 +68,9 @@ namespace MQ8Sensor {
     //% block="read Rs from pin %pin"
     export function readSensor(pin: AnalogPin): number {
         let total = 0;
-        for (let i = 0; i < readSamples; i++) {
+        for (let i = 0; i < readSamples; i++) {  // Use the local variable here
             total += calculateResistance(pins.analogReadPin(pin));
-            basic.pause(readInterval);
+            basic.pause(readInterval);  // Use the local variable here
         }
         return total / readSamples;
     }
