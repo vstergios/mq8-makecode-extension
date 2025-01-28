@@ -11,8 +11,8 @@ namespace MQ8Sensor {
     // Sampling settings
     let calibrationSamples = 50;
     let calibrationInterval = 500;
-    let readSamples = 5;
-    let readInterval = 50;
+    let readSamples = 5; // Local variable
+    let readInterval = 50; // Local variable
 
     /**
      * Calibrate the MQ-8 sensor in clean air
@@ -45,10 +45,10 @@ namespace MQ8Sensor {
      * Set sampling parameters for calibration and reading
      * @param calSamples number of calibration samples
      * @param calInterval interval between calibration samples (ms)
-     * @param readSamples number of read samples
-     * @param readInterval interval between read samples (ms)
+     * @param newReadSamples number of read samples
+     * @param newReadInterval interval between read samples (ms)
      */
-    //% block="set sampling parameters: cal samples %calSamples interval %calInterval ms, read samples %readSamples interval %readInterval ms"
+    //% block="set sampling parameters: cal samples %calSamples interval %calInterval ms, read samples %newReadSamples interval %newReadInterval ms"
     export function setSamplingParameters(
         calSamples: number,
         calInterval: number,
@@ -57,8 +57,8 @@ namespace MQ8Sensor {
     ): void {
         calibrationSamples = calSamples;
         calibrationInterval = calInterval;
-        readSamples = newReadSamples; // Change readSamples directly
-        readInterval = newReadInterval; // Change readInterval directly
+        readSamples = newReadSamples; // Use local variable readSamples
+        readInterval = newReadInterval; // Use local variable readInterval
     }
 
     /**
@@ -89,6 +89,7 @@ namespace MQ8Sensor {
      * @param curve the gas curve
      */
     function calculateGasPercentage(ratio: number, curve: number[]): number {
+        // Using Math.log(x) / Math.LN10 instead of Math.log10
         return Math.pow(10, (Math.log(ratio) / Math.LN10 - curve[1]) / curve[2] + curve[0]);
     }
 }
