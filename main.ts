@@ -1,4 +1,4 @@
-﻿//% weight=100 color=#00A6F0 icon=""
+//% weight=100 color=#00A6F0 icon=""
 //% block="MQ-8 Sensor"
 namespace MQ8Sensor {
     let Ro = 10; // Default Ro value
