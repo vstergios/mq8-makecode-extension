@@ -52,13 +52,13 @@ namespace MQ8Sensor {
     export function setSamplingParameters(
         calSamples: number,
         calInterval: number,
-        readSamples: number,
-        readInterval: number
+        newReadSamples: number,
+        newReadInterval: number
     ): void {
         calibrationSamples = calSamples;
         calibrationInterval = calInterval;
-        MQ8Sensor.readSamples = readSamples;
-        MQ8Sensor.readInterval = readInterval;
+        readSamples = newReadSamples; // Change readSamples directly
+        readInterval = newReadInterval; // Change readInterval directly
     }
 
     /**
@@ -89,6 +89,6 @@ namespace MQ8Sensor {
      * @param curve the gas curve
      */
     function calculateGasPercentage(ratio: number, curve: number[]): number {
-        return Math.pow(10, (Math.log10(ratio) - curve[1]) / curve[2] + curve[0]);
+        return Math.pow(10, (Math.log(ratio) / Math.LN10 - curve[1]) / curve[2] + curve[0]);
     }
 }
